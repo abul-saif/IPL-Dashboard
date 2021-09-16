@@ -1,30 +1,41 @@
 import {React, useEffect, useState} from 'react';
 import { MatchDetailCard } from '../component/MatchDetailCard';
 import { MatchSmallCard } from '../component/MatchSmallCard';
+// import axios from 'axios';
+import { base_url } from '../api/base_url';
+import { useParams } from 'react-router';
+
 
 export const TeamPage = () => {
 
+    const {teamName} = useParams();
     
     useEffect(() => {
         
         const fetchMatches= async ()=>{
-            const reponse= await fetch('http://localhost:8080/teams/Chennai Super Kings');
+            const reponse= await fetch(`${base_url}/teams/${teamName}`);
             const data=await reponse.json();
             console.log(data);
             setteam(data);
         }
         
         fetchMatches();
-    }, [])
+    }, [teamName])
+
     
     const [team, setteam] = useState({});
-    
+    {
+        if(!team || !team.teamName){
+            return <h1>Team Not Found</h1>
+        }
+    }
+
     return (
         <div className="TeamPage">
             <h1>{team.teamName}</h1>
-            <MatchDetailCard latestMatch={team.recentMatches[0]}/>
+            <MatchDetailCard teamName={team.teamName} latestMatch={team.recentMatches[0]}/>
             {
-                team.recentMatches.slice(1).map(match => <MatchSmallCard match={match}/>)
+                team.recentMatches.slice(1).map(match => <MatchSmallCard teamName={team.teamName} match={match}/>)
             }
         </div>
     )
