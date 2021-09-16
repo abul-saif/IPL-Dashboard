@@ -9,6 +9,7 @@ import { useParams } from 'react-router';
 export const TeamPage = () => {
 
     const {teamName} = useParams();
+    const [team, setteam] = useState({});
     
     useEffect(() => {
         
@@ -23,7 +24,6 @@ export const TeamPage = () => {
     }, [teamName])
 
     
-    const [team, setteam] = useState({});
     {
         if(!team || !team.teamName){
             return <h1>Team Not Found</h1>
