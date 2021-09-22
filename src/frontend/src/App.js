@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import { TeamPage } from './page/TeamPage';
 import {BrowserRouter as Router , Route , Switch} from 'react-router-dom';
 import { MatchPage } from './page/MatchPage';

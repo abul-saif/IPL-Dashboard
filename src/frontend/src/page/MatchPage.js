@@ -13,8 +13,6 @@ export const MatchPage = () => {
             const response=await fetch(`${base_url}/teams/${teamName}/matches?year=${year}`);
             const data= await response.json();
             setmatches(data);
-            // console.log(data); 
-            // console.log("matches = "+matches);
         }
         
         fetchMatches();

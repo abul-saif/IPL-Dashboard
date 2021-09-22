@@ -1,10 +1,11 @@
 import {React, useEffect, useState} from 'react';
 import { MatchDetailCard } from '../component/MatchDetailCard';
 import { MatchSmallCard } from '../component/MatchSmallCard';
-// import axios from 'axios';
 import { base_url } from '../api/base_url';
 import { useParams } from 'react-router';
+import { PieChart } from 'react-minimal-pie-chart';
 
+import './TeamPage.scss';
 
 export const TeamPage = () => {
 
@@ -32,11 +33,32 @@ export const TeamPage = () => {
 
     return (
         <div className="TeamPage">
-            <h1>{team.teamName}</h1>
-            <MatchDetailCard teamName={team.teamName} latestMatch={team.recentMatches[0]}/>
+            <div className='team-name-section'>
+                <h1 className='team-name'>{team.teamName}</h1>
+                <h3>Latest matches</h3>
+            </div>
+
+            <div className='win-loss-section'>
+                <PieChart
+                    data={[
+                        { title: 'Losses', value: team.totalMatches-team.totalWins, color: '#a34d5d' },
+                        { title: 'Wins', value: team.totalWins, color: '#4da375' }
+                    ]}
+                />
+            </div>
+
+            <div className='match-details-section'>
+                <MatchDetailCard teamName={team.teamName} match={team.recentMatches[0]}/>
+            </div>
+
             {
-                team.recentMatches.slice(1).map(match => <MatchSmallCard teamName={team.teamName} match={match}/>)
+                team.recentMatches.slice(1).map(match =><MatchSmallCard teamName={team.teamName} match={match}/> )
             }
+
+
+            <div className='more-link'>
+                <a href="#">More ></a>
+            </div>
         </div>
     )
 }

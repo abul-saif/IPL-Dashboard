@@ -3,7 +3,6 @@ package io.afsaif.ipldashboard.controller;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,15 +18,9 @@ import io.afsaif.ipldashboard.repository.TeamRepository;
 @RestController
 public class TeamController {
 
-    // @Autowired
     private TeamRepository teamRepository;
-    // @Autowired
     private MatchRepository matchRepository;
 
-    // public TeamController(){
-
-    // }
-    
     public TeamController(TeamRepository teamRepository,MatchRepository matchRepository) {
         this.teamRepository = teamRepository;
         this.matchRepository=matchRepository;
