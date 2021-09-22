@@ -1,0 +1,13 @@
+.YearSelector{
+    text-align: center;
+    list-style-type: none;
+    
+
+    li{
+        margin-bottom: 10px;
+    }
+
+    li:hover{
+        transform: scale(1.5);
+    }
+}

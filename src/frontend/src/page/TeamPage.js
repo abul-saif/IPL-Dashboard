@@ -6,11 +6,13 @@ import { useParams } from 'react-router';
 import { PieChart } from 'react-minimal-pie-chart';
 
 import './TeamPage.scss';
+import { Link } from 'react-router-dom';
 
 export const TeamPage = () => {
 
     const {teamName} = useParams();
     const [team, setteam] = useState({});
+    const startYear=process.env.REACT_APP_DATA_END_YEAR;
     
     useEffect(() => {
         
@@ -57,7 +59,7 @@ export const TeamPage = () => {
 
 
             <div className='more-link'>
-                <a href="#">More ></a>
+                <Link to={`/teams/${team.teamName}/matches/${startYear}`} ><p>More > </p> </Link>
             </div>
         </div>
     )
